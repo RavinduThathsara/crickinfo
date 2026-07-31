@@ -2,7 +2,6 @@ package com.cricket.config;
 
 import com.cricket.entity.Player;
 import com.cricket.repository.PlayerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
@@ -10,8 +9,11 @@ import java.time.LocalDate;
 @Component
 public class DataInitializer implements CommandLineRunner {
     
-    @Autowired
-    private PlayerRepository playerRepository;
+    private final PlayerRepository playerRepository;
+
+    public DataInitializer(PlayerRepository playerRepository) {
+        this.playerRepository = playerRepository;
+    }
     
     @Override
     public void run(String... args) {

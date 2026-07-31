@@ -1,0 +1,267 @@
+<div class="profile-container" *ngIf="!loading && player">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">CricPulse</div>
+        <nav class="nav">
+            <a routerLink="/scores" class="nav-link">Scores</a>
+            <a routerLink="/players" class="nav-link active">Players</a>
+            <a href="#" class="nav-link">Fixtures</a>
+            <a href="#" class="nav-link">Shop</a>
+            <a href="#" class="nav-link">Tickets</a>
+        </nav>
+        <div class="header-right">
+            <input type="text" placeholder="Search players..." class="search-input">
+            <button class="icon-btn">🔔</button>
+            <button class="icon-btn">🛒</button>
+            <button class="icon-btn">👤</button>
+        </div>
+    </header>
+
+    <div class="profile-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Personal Info -->
+            <div class="info-card">
+                <h3 class="section-title">Personal Info</h3>
+
+                <div class="info-item">
+                    <div class="info-label">BIRTH DATE</div>
+                    <div class="info-value">{{ player.birthDate }}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">BIRTH PLACE</div>
+                    <div class="info-value">{{ player.birthPlace }}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">BATTING STYLE</div>
+                    <div class="info-value">{{ player.battingStyle }}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">BOWLING STYLE</div>
+                    <div class="info-value">{{ player.bowlingStyle }}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">TEAMS</div>
+                    <div class="info-value">{{ player.teams }}</div>
+                </div>
+            </div>
+
+            <!-- ICC Rankings -->
+            <div class="rankings-card">
+                <h3 class="section-title">ICC RANKINGS</h3>
+
+                <div class="rank-grid">
+                    <div class="rank-item">
+                        <div class="rank-label">ODI Bat</div>
+                        <div class="rank-number">#{{ player.odiRank }}</div>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-label">Test Bat</div>
+                        <div class="rank-number">#{{ player.testRank }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ad Card -->
+            <div class="ad-card">
+                <img src="https://via.placeholder.com/200x300/1a472a/ffffff?text=Cricket+Gear" alt="Ad">
+                <div class="ad-content">
+                    <div class="ad-badge">OFFICIAL SHOP</div>
+                    <h3>Get the Gear</h3>
+                    <button class="ad-btn">Buy Tickets</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Player Header -->
+            <div class="player-header">
+                <div class="player-image-section">
+                    <img [src]="player.imageUrl" [alt]="player.name" class="player-image">
+                </div>
+
+                <div class="player-info-section">
+                    <div class="player-team">
+                        <span class="flag">🇮🇳</span>
+                        <span>{{ player.nationalTeam }}</span>
+                    </div>
+
+                    <h1 class="player-name">{{ player.name }}</h1>
+
+                    <div class="player-badges">
+                        <span class="role-badge">{{ player.role }}</span>
+                        <span class="live-badge" *ngIf="player.isLive">
+                            <span class="live-dot">🔴</span> LIVE NOW
+                        </span>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Matches</div>
+                            <div class="stat-value">{{ player.matches }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Runs</div>
+                            <div class="stat-value">{{ player.runs }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Avg</div>
+                            <div class="stat-value">{{ player.avg }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">SR</div>
+                            <div class="stat-value">{{ player.sr }}</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">HS</div>
+                            <div class="stat-value">{{ player.hs }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="statistics-section">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab" [class.active]="activeTab === 'statistics'"
+                        (click)="setActiveTab('statistics')">
+                        statistics
+                    </button>
+                    <button class="tab" [class.active]="activeTab === 'recent'" (click)="setActiveTab('recent')">
+                        Recent Form
+                    </button>
+                    <button class="tab" [class.active]="activeTab === 'biography'" (click)="setActiveTab('biography')">
+                        Biography
+                    </button>
+                </div>
+
+                <!-- Statistics Content -->
+                <div class="tab-content" *ngIf="activeTab === 'statistics'">
+                    <!-- Stats Table -->
+                    <div class="stats-table">
+                        <div class="table-header">
+                            <div class="th">FORMAT</div>
+                            <div class="th">MAT</div>
+                            <div class="th">INNS</div>
+                            <div class="th">RUNS</div>
+                            <div class="th">HS</div>
+                            <div class="th">AVG</div>
+                            <div class="th">SR</div>
+                            <div class="th">100S</div>
+                            <div class="th">50S</div>
+                        </div>
+
+                        <div class="table-row">
+                            <div class="td format">Test</div>
+                            <div class="td">{{ player.testMatches }}</div>
+                            <div class="td">{{ player.testInnings }}</div>
+                            <div class="td">{{ player.testRuns }}</div>
+                            <div class="td">{{ player.testHS }}</div>
+                            <div class="td">{{ player.testAvg }}</div>
+                            <div class="td">{{ player.testSR }}</div>
+                            <div class="td">{{ player.test100s }}</div>
+                            <div class="td">{{ player.test50s }}</div>
+                        </div>
+
+                        <div class="table-row">
+                            <div class="td format">ODI</div>
+                            <div class="td">{{ player.odiMatches }}</div>
+                            <div class="td">{{ player.odiInnings }}</div>
+                            <div class="td">{{ player.odiRuns }}</div>
+                            <div class="td">{{ player.odiHS }}</div>
+                            <div class="td">{{ player.odiAvg }}</div>
+                            <div class="td">{{ player.odiSR }}</div>
+                            <div class="td">{{ player.odi100s }}</div>
+                            <div class="td">{{ player.odi50s }}</div>
+                        </div>
+
+                        <div class="table-row">
+                            <div class="td format">T20I</div>
+                            <div class="td">{{ player.t20Matches }}</div>
+                            <div class="td">{{ player.t20Innings }}</div>
+                            <div class="td">{{ player.t20Runs }}</div>
+                            <div class="td">{{ player.t20HS }}</div>
+                            <div class="td">{{ player.t20Avg }}</div>
+                            <div class="td">{{ player.t20SR }}</div>
+                            <div class="td">{{ player.t20100s }}</div>
+                            <div class="td">{{ player.t2050s }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="charts-section">
+                        <!-- Career Runs Progression -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">CAREER RUNS PROGRESSION</h3>
+                            <div class="bar-chart">
+                                <div class="bar-item" *ngFor="let data of careerData">
+                                    <div class="bar-wrapper">
+                                        <div class="bar" [style.height.%]="getBarHeight(data.runs)"></div>
+                                    </div>
+                                    <div class="bar-label">{{ data.year }}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Batting Average by Format -->
+                        <div class="chart-card">
+                            <h3 class="chart-title">BATTING AVERAGE BY FORMAT</h3>
+                            <div class="horizontal-bar-chart">
+                                <div class="h-bar-item" *ngFor="let data of avgData">
+                                    <div class="h-bar-label">{{ data.format }}</div>
+                                    <div class="h-bar-wrapper">
+                                        <div class="h-bar" [style.width.%]="getAvgBarWidth(data.avg)"></div>
+                                    </div>
+                                    <div class="h-bar-value">{{ data.avg }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Form Content -->
+                <div class="tab-content" *ngIf="activeTab === 'recent'">
+                    <div class="placeholder-content">
+                        <p>Recent form data coming soon...</p>
+                    </div>
+                </div>
+
+                <!-- Biography Content -->
+                <div class="tab-content" *ngIf="activeTab === 'biography'">
+                    <div class="placeholder-content">
+                        <p>Player biography coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3 class="footer-logo">CricPulse</h3>
+                <p>The world's leading destination for real-time cricket statistics, player statistics, and live match
+                    data.</p>
+                <p>Engineered for fans who live for the game.</p>
+            </div>
+            <div class="footer-right">
+                <button class="social-btn">📧</button>
+                <button class="social-btn">📷</button>
+                <button class="social-btn">📺</button>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div class="loading-screen" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading player profile...</p>
+</div>

@@ -2,7 +2,6 @@ package com.cricket.controller;
 
 import com.cricket.entity.Player;
 import com.cricket.service.PlayerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,16 +10,19 @@ import java.util.List;
 @RequestMapping("/api/players")
 @CrossOrigin(origins = "http://localhost:4200")
 public class PlayerController {
-    
-    @Autowired
-    private PlayerService playerService;
-    
+
+    private final PlayerService playerService;
+
+    public PlayerController(PlayerService playerService) {
+        this.playerService = playerService;
+    }
+
     @GetMapping("/search")
     public ResponseEntity<List<Player>> searchPlayers(@RequestParam String name) {
         List<Player> players = playerService.searchPlayers(name);
         return ResponseEntity.ok(players);
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<Player> getPlayerById(@PathVariable Long id) {
         Player player = playerService.getPlayerById(id);
@@ -29,12 +31,12 @@ public class PlayerController {
         }
         return ResponseEntity.notFound().build();
     }
-    
+
     @GetMapping
     public ResponseEntity<List<Player>> getAllPlayers() {
         return ResponseEntity.ok(playerService.getAllPlayers());
     }
-    
+
     @PostMapping
     public ResponseEntity<Player> createPlayer(@RequestBody Player player) {
         Player savedPlayer = playerService.savePlayer(player);

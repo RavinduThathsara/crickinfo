@@ -1,0 +1,207 @@
+<div class="scores-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CricPulse</div>
+    <nav class="nav">
+      <a href="#" class="nav-link active">SCORES</a>
+      <a routerLink="/" class="nav-link">PLAYERS</a>
+      <a href="#" class="nav-link">FIXTURES</a>
+      <a href="#" class="nav-link">SHOP</a>
+      <a href="#" class="nav-link">TICKETS</a>
+    </nav>
+    <div class="header-right">
+      <input type="text" placeholder="Search players, teams..." class="search-input">
+      <button class="icon-btn">🔔</button>
+      <button class="icon-btn">🛒</button>
+      <button class="icon-btn">👤</button>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
+    <!-- Live Match Section -->
+    <div class="main-content">
+      <div class="live-match-card" *ngFor="let match of liveMatches">
+        <div class="live-badge">
+          <span class="live-dot">🔴</span> LIVE NOW
+        </div>
+        <div class="match-title">BORDER-GAVASKAR TROPHY - 2025 TEST</div>
+        
+        <div class="match-score">
+          <div class="team">
+            <span class="flag">{{ match.team1Flag }}</span>
+            <span class="team-name">{{ match.team1 }}</span>
+            <span class="score">{{ match.team1Score }}</span>
+          </div>
+          
+          <div class="vs-divider">VS</div>
+          
+          <div class="team">
+            <span class="team-name">{{ match.team2 }}</span>
+            <span class="flag">{{ match.team2Flag }}</span>
+            <div class="status">{{ match.status }}</div>
+          </div>
+        </div>
+
+        <div class="match-details">
+          <div class="detail-item">
+            <div class="label">BATTER</div>
+            <div class="value">{{ match.batter1Name }}</div>
+            <div class="stats">{{ match.batter1Score }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="label">BATTER</div>
+            <div class="value">{{ match.batter2Name }}</div>
+            <div class="stats">{{ match.batter2Score }}</div>
+          </div>
+          
+          <div class="detail-item">
+            <div class="label">BOWLER</div>
+            <div class="value">{{ match.bowlerName }}</div>
+            <div class="stats">{{ match.bowlerStats }}</div>
+          </div>
+
+          <button class="match-center-btn">
+            <span>📊</span>
+            <span>Match Center</span>
+          </button>
+        </div>
+
+        <div class="match-footer">
+          <span>{{ match.overs }}</span>
+          <span>•</span>
+          <span>{{ match.crr }}</span>
+        </div>
+      </div>
+
+      <!-- Recent Results -->
+      <section class="recent-results">
+        <div class="section-header">
+          <h2>Recent Results</h2>
+          <div class="nav-arrows">
+            <button class="arrow-btn">‹</button>
+            <button class="arrow-btn">›</button>
+          </div>
+        </div>
+
+        <div class="results-grid">
+          <div class="result-card" *ngFor="let result of recentResults">
+            <div class="result-header">
+              <span class="days-ago">{{ result.daysAgo }} DAYS AGO</span>
+              <span class="finished-badge">FINISHED</span>
+            </div>
+            
+            <div class="result-teams">
+              <div class="result-team">
+                <span class="flag">{{ result.team1Flag }}</span>
+                <span class="team-code">{{ result.team1 }}</span>
+                <span class="result-score">{{ result.team1Score }}</span>
+              </div>
+              
+              <div class="result-team">
+                <span class="flag">{{ result.team2Flag }}</span>
+                <span class="team-code">{{ result.team2 }}</span>
+                <span class="result-score">{{ result.team2Score }}</span>
+              </div>
+            </div>
+            
+            <div class="result-footer">{{ result.result }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Latest News -->
+      <section class="latest-news">
+        <div class="section-header">
+          <h2>Latest News</h2>
+          <a href="#" class="view-all">READ ALL ARTICLES</a>
+        </div>
+
+        <div class="news-grid">
+          <div class="news-card featured">
+            <div class="news-image">
+              <img src="https://via.placeholder.com/600x400/1a472a/ffffff?text=Cricket+Ball" alt="News">
+              <span class="news-badge">ANALYSIS</span>
+            </div>
+            <div class="news-content">
+              <h3>The Evolution of the Pink Ball: Challenges and Triumphs in Day-Night Tests</h3>
+              <p>From manufacturers and groundsmen, every one working together to perfect the day-night Test</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-image">
+              <img src="https://via.placeholder.com/400x300/2d5a3d/ffffff?text=Player" alt="News">
+              <span class="news-badge">SQUAD UPDATE</span>
+            </div>
+            <div class="news-content">
+              <h3>England Names Unchanged Squad for Final Test</h3>
+              <p>England stick with the winning formula despite concerns at Old Trafford</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-image">
+              <img src="https://via.placeholder.com/400x300/1a472a/ffffff?text=Stats" alt="News">
+              <span class="news-badge">STATS CORNER</span>
+            </div>
+            <div class="news-content">
+              <h3>The 'Bazball' Impact: A Statistical Deep Dive</h3>
+              <p>Analyzing England's aggressive approach through numbers</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <div class="news-image">
+              <img src="https://via.placeholder.com/400x300/2d5a3d/ffffff?text=Stadium" alt="News">
+              <span class="news-badge">COMMUNITY</span>
+            </div>
+            <div class="news-content">
+              <h3>Record Ticket Sales for ICC Champions Trophy</h3>
+              <p>Tournament set to break attendance records</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Upcoming Matches -->
+      <div class="sidebar-card">
+        <div class="sidebar-header">
+          <h3>upcoming</h3>
+          <a href="#" class="view-schedule">view schedule</a>
+        </div>
+        
+        <div class="upcoming-match" *ngFor="let match of upcomingMatches">
+          <div class="tournament-name">{{ match.tournament }}</div>
+          <div class="match-time">⏱️ {{ match.time }}</div>
+          
+          <div class="upcoming-teams">
+            <div class="upcoming-team">
+              <span class="flag">{{ match.team1Flag }}</span>
+              <span class="team-code">{{ match.team1 }}</span>
+            </div>
+            <span class="vs-text">vs</span>
+            <div class="upcoming-team">
+              <span class="flag">{{ match.team2Flag }}</span>
+              <span class="team-code">{{ match.team2 }}</span>
+            </div>
+          </div>
+          
+          <button class="notify-btn">Notify Me</button>
+        </div>
+      </div>
+
+      <!-- World Cup Widget -->
+      <div class="sidebar-card world-cup">
+        <div class="world-cup-header">
+          <span class="trophy-icon">{{ worldCup.icon }}</span>
+          <span>{{ worldCup.name }}</span>
+        </div>
+        <button class="world-cup-btn">📅</button>
+      </div>
+    </aside>
+  </div>
+</div>

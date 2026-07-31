@@ -1,2 +1,36 @@
 {
-  "$schem
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "cricket-players-frontend": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cricket-players-frontend",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [],
+            "styles": ["src/styles.css"],
+            "scripts": []
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "cricket-players-frontend:build"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "d563411d-5133-4f72-8f3d-c65467ad014a"
+  }
+}

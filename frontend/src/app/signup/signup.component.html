@@ -1,94 +1,95 @@
 <div class="signup-shell">
-  <div class="signup-glow signup-glow-one"></div>
-  <div class="signup-glow signup-glow-two"></div>
+    <div class="signup-glow signup-glow-one"></div>
+    <div class="signup-glow signup-glow-two"></div>
 
-  <section class="signup-card">
-    <aside class="signup-aside">
-      <div class="brand-badge">CrickInfo</div>
-      <h1>Create your cricket hub</h1>
-      <p>
-        Join for live scores, player profiles, match updates, and a cleaner way to follow the game.
-      </p>
+    <section class="signup-card">
+        <aside class="signup-aside">
+            <div class="brand-badge">CrickInfo</div>
+            <h1>Create your cricket hub</h1>
+            <p>
+                Join for live scores, player profiles, match updates, and a cleaner way to follow the game.
+            </p>
 
-      <div class="feature-list">
-        <div class="feature-item">
-          <span class="feature-icon">⚡</span>
-          <div>
-            <h3>Fast match tracking</h3>
-            <p>Keep up with live scores and key moments.</p>
-          </div>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <div>
+                        <h3>Fast match tracking</h3>
+                        <p>Keep up with live scores and key moments.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <div>
+                        <h3>Player insights</h3>
+                        <p>Explore profiles and statistics in one place.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🏏</span>
+                    <div>
+                        <h3>Cricket-first design</h3>
+                        <p>A focused interface built for fans.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="signup-panel">
+            <div class="panel-header">
+                <span class="eyebrow">Sign up</span>
+                <h2>Start your free account</h2>
+                <p>Enter your details to create a polished cricket profile and access the app experience.</p>
+            </div>
+
+            <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="signup-form" novalidate>
+                <div class="field-grid">
+                    <label class="field">
+                        <span>Full name</span>
+                        <input type="text" formControlName="fullName" placeholder="Your full name" />
+                        <small *ngIf="fullName?.touched && fullName?.invalid">Please enter your name.</small>
+                    </label>
+
+                    <label class="field">
+                        <span>Email address</span>
+                        <input type="email" formControlName="email" placeholder="name@example.com" />
+                        <small *ngIf="email?.touched && email?.invalid">Enter a valid email address.</small>
+                    </label>
+                </div>
+
+                <label class="field">
+                    <span>Password</span>
+                    <input type="password" formControlName="password" placeholder="At least 8 characters" />
+                    <small *ngIf="password?.touched && password?.invalid">Use 8 or more characters.</small>
+                </label>
+
+                <label class="field">
+                    <span>Favorite team</span>
+                    <select formControlName="favoriteTeam">
+                        <option value="" disabled>Select your team</option>
+                        <option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option>
+                    </select>
+                    <small *ngIf="favoriteTeam?.touched && favoriteTeam?.invalid">Pick a team you follow.</small>
+                </label>
+
+                <label class="checkbox-row">
+                    <input type="checkbox" formControlName="agreeTerms" />
+                    <span>I agree to the terms and confirm this account is for personal use.</span>
+                </label>
+                <small class="checkbox-error" *ngIf="agreeTerms?.touched && agreeTerms?.invalid">You need to accept the
+                    terms.</small>
+
+                <button type="submit" class="submit-btn">Create account</button>
+
+                <p class="footer-text">
+                    Already have an account?
+                    <a routerLink="/scores">Go to scores</a>
+                </p>
+            </form>
+
+            <div class="status-box" *ngIf="submitted && signupForm.valid">
+                Your signup form is ready. Connect it to your backend when you want to save users.
+            </div>
         </div>
-        <div class="feature-item">
-          <span class="feature-icon">📊</span>
-          <div>
-            <h3>Player insights</h3>
-            <p>Explore profiles and statistics in one place.</p>
-          </div>
-        </div>
-        <div class="feature-item">
-          <span class="feature-icon">🏏</span>
-          <div>
-            <h3>Cricket-first design</h3>
-            <p>A focused interface built for fans.</p>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <div class="signup-panel">
-      <div class="panel-header">
-        <span class="eyebrow">Sign up</span>
-        <h2>Start your free account</h2>
-        <p>Enter your details to create a polished cricket profile and access the app experience.</p>
-      </div>
-
-      <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="signup-form" novalidate>
-        <div class="field-grid">
-          <label class="field">
-            <span>Full name</span>
-            <input type="text" formControlName="fullName" placeholder="Your full name" />
-            <small *ngIf="fullName?.touched && fullName?.invalid">Please enter your name.</small>
-          </label>
-
-          <label class="field">
-            <span>Email address</span>
-            <input type="email" formControlName="email" placeholder="name@example.com" />
-            <small *ngIf="email?.touched && email?.invalid">Enter a valid email address.</small>
-          </label>
-        </div>
-
-        <label class="field">
-          <span>Password</span>
-          <input type="password" formControlName="password" placeholder="At least 8 characters" />
-          <small *ngIf="password?.touched && password?.invalid">Use 8 or more characters.</small>
-        </label>
-
-        <label class="field">
-          <span>Favorite team</span>
-          <select formControlName="favoriteTeam">
-            <option value="" disabled>Select your team</option>
-            <option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option>
-          </select>
-          <small *ngIf="favoriteTeam?.touched && favoriteTeam?.invalid">Pick a team you follow.</small>
-        </label>
-
-        <label class="checkbox-row">
-          <input type="checkbox" formControlName="agreeTerms" />
-          <span>I agree to the terms and confirm this account is for personal use.</span>
-        </label>
-        <small class="checkbox-error" *ngIf="agreeTerms?.touched && agreeTerms?.invalid">You need to accept the terms.</small>
-
-        <button type="submit" class="submit-btn">Create account</button>
-
-        <p class="footer-text">
-          Already have an account?
-          <a routerLink="/scores">Go to scores</a>
-        </p>
-      </form>
-
-      <div class="status-box" *ngIf="submitted && signupForm.valid">
-        Your signup form is ready. Connect it to your backend when you want to save users.
-      </div>
-    </div>
-  </section>
+    </section>
 </div>

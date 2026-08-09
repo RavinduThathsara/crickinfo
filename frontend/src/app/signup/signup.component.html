@@ -38,8 +38,8 @@
         <div class="signup-panel">
             <div class="panel-header">
                 <span class="eyebrow">Sign up</span>
-                <h2>Start your free account</h2>
-                <p>Enter your details to create a polished cricket profile and access the app experience.</p>
+                <h2>Create your account</h2>
+                <p>Register once and move straight into your cricket profile dashboard.</p>
             </div>
 
             <form [formGroup]="signupForm" (ngSubmit)="submitForm()" class="signup-form" novalidate>
@@ -51,25 +51,48 @@
                     </label>
 
                     <label class="field">
+                        <span>Username</span>
+                        <input type="text" formControlName="username" placeholder="Choose a username" />
+                        <small *ngIf="username?.touched && username?.invalid">Username is required.</small>
+                    </label>
+                </div>
+
+                <div class="field-grid">
+                    <label class="field">
                         <span>Email address</span>
                         <input type="email" formControlName="email" placeholder="name@example.com" />
                         <small *ngIf="email?.touched && email?.invalid">Enter a valid email address.</small>
                     </label>
+
+                    <label class="field">
+                        <span>Phone number</span>
+                        <input type="tel" formControlName="phoneNumber" placeholder="+91 98765 43210" />
+                        <small *ngIf="phoneNumber?.touched && phoneNumber?.invalid">Enter a valid phone number.</small>
+                    </label>
+                </div>
+
+                <div class="field-grid">
+                    <label class="field">
+                        <span>Password</span>
+                        <input type="password" formControlName="password" placeholder="At least 8 characters" />
+                        <small *ngIf="password?.touched && password?.invalid">Use 8 or more characters.</small>
+                    </label>
+
+                    <label class="field">
+                        <span>Confirm password</span>
+                        <input type="password" formControlName="confirmPassword" placeholder="Repeat password" />
+                        <small *ngIf="confirmPassword?.touched && confirmPassword?.invalid">Confirm your
+                            password.</small>
+                    </label>
                 </div>
 
                 <label class="field">
-                    <span>Password</span>
-                    <input type="password" formControlName="password" placeholder="At least 8 characters" />
-                    <small *ngIf="password?.touched && password?.invalid">Use 8 or more characters.</small>
-                </label>
-
-                <label class="field">
-                    <span>Favorite team</span>
-                    <select formControlName="favoriteTeam">
-                        <option value="" disabled>Select your team</option>
-                        <option *ngFor="let team of teamOptions" [value]="team">{{ team }}</option>
+                    <span>Country</span>
+                    <select formControlName="country">
+                        <option value="" disabled>Select your country</option>
+                        <option *ngFor="let country of countryOptions" [value]="country">{{ country }}</option>
                     </select>
-                    <small *ngIf="favoriteTeam?.touched && favoriteTeam?.invalid">Pick a team you follow.</small>
+                    <small *ngIf="country?.touched && country?.invalid">Select your country.</small>
                 </label>
 
                 <label class="checkbox-row">
@@ -79,17 +102,17 @@
                 <small class="checkbox-error" *ngIf="agreeTerms?.touched && agreeTerms?.invalid">You need to accept the
                     terms.</small>
 
-                <button type="submit" class="submit-btn">Create account</button>
+                <div class="server-error" *ngIf="serverError">{{ serverError }}</div>
+
+                <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+                    {{ isSubmitting ? 'Creating account...' : 'Create account' }}
+                </button>
 
                 <p class="footer-text">
                     Already have an account?
                     <a routerLink="/scores">Go to scores</a>
                 </p>
             </form>
-
-            <div class="status-box" *ngIf="submitted && signupForm.valid">
-                Your signup form is ready. Connect it to your backend when you want to save users.
-            </div>
         </div>
     </section>
 </div>

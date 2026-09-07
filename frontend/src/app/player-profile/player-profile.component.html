@@ -1,19 +1,24 @@
 <div class="profile-container" *ngIf="!loading && player">
     <!-- Header -->
     <header class="header">
-        <div class="logo">CricPulse</div>
+        <a routerLink="/" class="logo-link" aria-label="cricketworld home">
+            <span class="logo-text">cricketworld</span>
+        </a>
         <nav class="nav">
-            <a routerLink="/scores" class="nav-link">Scores</a>
-            <a routerLink="/players" class="nav-link active">Players</a>
-            <a href="#" class="nav-link">Fixtures</a>
-            <a href="#" class="nav-link">Shop</a>
-            <a href="#" class="nav-link">Tickets</a>
+            <a routerLink="/scores" class="nav-link">Live Scores</a>
+            <a routerLink="/players" class="nav-link active">Series</a>
+            <a href="#" class="nav-link">Teams</a>
+            <a href="#" class="nav-link">News</a>
+            <a href="#" class="nav-link">Features</a>
+            <a href="#" class="nav-link">Videos</a>
+            <a href="#" class="nav-link">Stats</a>
+            <a href="#" class="nav-link">Games</a>
         </nav>
-        <div class="header-right">
-            <input type="text" placeholder="Search players..." class="search-input">
-            <button class="icon-btn">🔔</button>
-            <button class="icon-btn">🛒</button>
-            <button class="icon-btn">👤</button>
+        <div class="header-tools">
+            <button class="edition-button" type="button">Edition SL <span aria-hidden="true">⌄</span></button>
+            <button class="icon-button" type="button" aria-label="Toggle theme">☾</button>
+            <button class="icon-button" type="button" aria-label="Notifications">♧</button>
+            <button class="icon-button" type="button" aria-label="Search">⌕</button>
         </div>
     </header>
 
@@ -247,7 +252,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <h3 class="footer-logo">CricPulse</h3>
+                <h3 class="footer-logo">cricketworld</h3>
                 <p>The world's leading destination for real-time cricket statistics, player statistics, and live match
                     data.</p>
                 <p>Engineered for fans who live for the game.</p>

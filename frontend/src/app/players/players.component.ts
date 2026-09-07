@@ -32,14 +32,25 @@ interface Player {
     <div class="players-container">
       <!-- Header -->
       <header class="header">
-        <div class="logo">CricPulse</div>
+        <a routerLink="/" class="logo-link" aria-label="cricketworld home">
+          <span class="logo-text">cricketworld</span>
+        </a>
         <nav class="nav">
-          <a routerLink="/scores" class="nav-link">SCORES</a>
-          <a routerLink="/players" class="nav-link active">PLAYERS</a>
-          <a href="#" class="nav-link">FIXTURES</a>
-          <a href="#" class="nav-link">SHOP</a>
-          <a href="#" class="nav-link">TICKETS</a>
+          <a routerLink="/scores" class="nav-link">Live Scores</a>
+          <a routerLink="/players" class="nav-link active">Series</a>
+          <a href="#" class="nav-link">Teams</a>
+          <a href="#" class="nav-link">News</a>
+          <a href="#" class="nav-link">Features</a>
+          <a href="#" class="nav-link">Videos</a>
+          <a href="#" class="nav-link">Stats</a>
+          <a href="#" class="nav-link">Games</a>
         </nav>
+        <div class="header-tools">
+          <button class="edition-button" type="button">Edition SL <span aria-hidden="true">⌄</span></button>
+          <button class="icon-button" type="button" aria-label="Toggle theme">☾</button>
+          <button class="icon-button" type="button" aria-label="Notifications">♧</button>
+          <button class="icon-button" type="button" aria-label="Search">⌕</button>
+        </div>
       </header>
 
       <div class="container">
@@ -138,36 +149,85 @@ interface Player {
     }
 
     .header {
-      background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
-      padding: 15px 40px;
+      background: #126b3a;
+      padding: 0 9.2%;
+      min-height: 66px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      gap: 42px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.16);
       margin-bottom: 30px;
     }
 
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
+    .logo-link {
+      display: flex;
+      flex: 0 0 auto;
+    }
+
+    .logo-text {
       color: white;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
 
     .nav {
       display: flex;
-      gap: 30px;
+      align-items: center;
+      gap: 28px;
+      flex: 1;
     }
 
     .nav-link {
-      color: rgba(255,255,255,0.8);
+      color: white;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      white-space: nowrap;
+      transition: opacity 0.2s;
     }
 
     .nav-link:hover,
     .nav-link.active {
+      opacity: 0.72;
+    }
+
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       color: white;
+    }
+
+    .edition-button,
+    .icon-button {
+      color: white;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .edition-button {
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    .edition-button span {
+      margin-left: 8px;
+      font-size: 20px;
+    }
+
+    .icon-button {
+      width: 28px;
+      height: 28px;
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .icon-button:hover,
+    .edition-button:hover {
+      opacity: 0.72;
     }
 
     .container {
@@ -293,6 +353,25 @@ interface Player {
     .view-profile-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(26, 71, 42, 0.4);
+    }
+
+    @media (max-width: 1100px) {
+      .header {
+        padding: 12px 24px;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .nav {
+        order: 3;
+        flex-basis: 100%;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .header-tools {
+        margin-left: auto;
+      }
     }
   `]
 })

@@ -1,0 +1,46 @@
+<div class="profile-page">
+    <section class="profile-hero">
+        <div>
+            <span class="eyebrow">User profile</span>
+            <h1>{{ user?.fullName || 'Your account is ready' }}</h1>
+            <p>
+                {{ user?.welcomeMessage || 'Registration completed successfully. This profile is linked to your signup
+                data.' }}
+            </p>
+        </div>
+        <a class="back-link" routerLink="/signup">Edit signup</a>
+    </section>
+
+    <section class="profile-grid" *ngIf="user; else emptyState">
+        <article class="profile-card highlight">
+            <div class="avatar">{{ user.fullName.charAt(0) }}</div>
+            <div>
+                <h2>{{ user.fullName }}</h2>
+                <p>{{ '@' + user.username }}</p>
+            </div>
+        </article>
+
+        <article class="profile-card">
+            <span class="label">Email</span>
+            <strong>{{ user.email }}</strong>
+        </article>
+
+        <article class="profile-card">
+            <span class="label">Phone</span>
+            <strong>{{ user.phoneNumber }}</strong>
+        </article>
+
+        <article class="profile-card">
+            <span class="label">Country</span>
+            <strong>{{ user.country }}</strong>
+        </article>
+    </section>
+
+    <ng-template #emptyState>
+        <section class="empty-card">
+            <h2>No registered user found</h2>
+            <p>Complete the signup form first to populate this profile page.</p>
+            <a routerLink="/signup">Go to signup</a>
+        </section>
+    </ng-template>
+</div>

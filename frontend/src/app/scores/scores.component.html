@@ -1,19 +1,24 @@
 <div class="scores-container">
   <!-- Header -->
   <header class="header">
-    <div class="logo">CricPulse</div>
+    <a routerLink="/" class="logo-link" aria-label="cricketworld home">
+      <span class="logo-text">cricketworld</span>
+    </a>
     <nav class="nav">
-      <a href="#" class="nav-link active">SCORES</a>
-      <a routerLink="/" class="nav-link">PLAYERS</a>
-      <a href="#" class="nav-link">FIXTURES</a>
-      <a href="#" class="nav-link">SHOP</a>
-      <a href="#" class="nav-link">TICKETS</a>
+      <a href="#" class="nav-link active">Live Scores</a>
+      <a routerLink="/players" class="nav-link">Series</a>
+      <a href="#" class="nav-link">Teams</a>
+      <a href="#" class="nav-link">News</a>
+      <a href="#" class="nav-link">Features</a>
+      <a href="#" class="nav-link">Videos</a>
+      <a href="#" class="nav-link">Stats</a>
+      <a href="#" class="nav-link">Games</a>
     </nav>
-    <div class="header-right">
-      <input type="text" placeholder="Search players, teams..." class="search-input">
-      <button class="icon-btn">🔔</button>
-      <button class="icon-btn">🛒</button>
-      <button class="icon-btn">👤</button>
+    <div class="header-tools">
+      <button class="edition-button" type="button">Edition SL <span aria-hidden="true">⌄</span></button>
+      <button class="icon-button" type="button" aria-label="Toggle theme">☾</button>
+      <button class="icon-button" type="button" aria-label="Notifications">♧</button>
+      <button class="icon-button" type="button" aria-label="Search">⌕</button>
     </div>
   </header>
 
@@ -25,16 +30,16 @@
           <span class="live-dot">🔴</span> LIVE NOW
         </div>
         <div class="match-title">BORDER-GAVASKAR TROPHY - 2025 TEST</div>
-        
+
         <div class="match-score">
           <div class="team">
             <span class="flag">{{ match.team1Flag }}</span>
             <span class="team-name">{{ match.team1 }}</span>
             <span class="score">{{ match.team1Score }}</span>
           </div>
-          
+
           <div class="vs-divider">VS</div>
-          
+
           <div class="team">
             <span class="team-name">{{ match.team2 }}</span>
             <span class="flag">{{ match.team2Flag }}</span>
@@ -48,13 +53,13 @@
             <div class="value">{{ match.batter1Name }}</div>
             <div class="stats">{{ match.batter1Score }}</div>
           </div>
-          
+
           <div class="detail-item">
             <div class="label">BATTER</div>
             <div class="value">{{ match.batter2Name }}</div>
             <div class="stats">{{ match.batter2Score }}</div>
           </div>
-          
+
           <div class="detail-item">
             <div class="label">BOWLER</div>
             <div class="value">{{ match.bowlerName }}</div>
@@ -90,21 +95,21 @@
               <span class="days-ago">{{ result.daysAgo }} DAYS AGO</span>
               <span class="finished-badge">FINISHED</span>
             </div>
-            
+
             <div class="result-teams">
               <div class="result-team">
                 <span class="flag">{{ result.team1Flag }}</span>
                 <span class="team-code">{{ result.team1 }}</span>
                 <span class="result-score">{{ result.team1Score }}</span>
               </div>
-              
+
               <div class="result-team">
                 <span class="flag">{{ result.team2Flag }}</span>
                 <span class="team-code">{{ result.team2 }}</span>
                 <span class="result-score">{{ result.team2Score }}</span>
               </div>
             </div>
-            
+
             <div class="result-footer">{{ result.result }}</div>
           </div>
         </div>
@@ -173,11 +178,11 @@
           <h3>upcoming</h3>
           <a href="#" class="view-schedule">view schedule</a>
         </div>
-        
+
         <div class="upcoming-match" *ngFor="let match of upcomingMatches">
           <div class="tournament-name">{{ match.tournament }}</div>
           <div class="match-time">⏱️ {{ match.time }}</div>
-          
+
           <div class="upcoming-teams">
             <div class="upcoming-team">
               <span class="flag">{{ match.team1Flag }}</span>
@@ -189,7 +194,7 @@
               <span class="team-code">{{ match.team2 }}</span>
             </div>
           </div>
-          
+
           <button class="notify-btn">Notify Me</button>
         </div>
       </div>

@@ -7,6 +7,7 @@ export const routes: Routes = [
     { path: '', redirectTo: '/scores', pathMatch: 'full' },
     { path: 'scores', component: ScoresComponent },
     { path: 'signup', component: SignupComponent },
+    { path: 'user-profile', loadComponent: () => import('./user-profile/user-profile.component').then(m => m.UserProfileComponent) },
     { path: 'players', loadComponent: () => import('./players/players.component').then(m => m.PlayersComponent) },
     { path: 'player/:id', loadComponent: () => import('./player-profile/player-profile.component').then(m => m.PlayerProfileComponent) }
 ];

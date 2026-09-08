@@ -44,6 +44,8 @@ interface Player {
           <a href="#" class="nav-link">Videos</a>
           <a href="#" class="nav-link">Stats</a>
           <a href="#" class="nav-link">Games</a>
+          <a routerLink="/grounds" class="nav-link">Grounds</a>
+          <a routerLink="/players" class="nav-link active">Players</a>
         </nav>
         <div class="header-tools">
           <button class="edition-button" type="button">Edition SL <span aria-hidden="true">⌄</span></button>

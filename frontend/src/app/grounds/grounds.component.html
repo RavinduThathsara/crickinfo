@@ -1,0 +1,93 @@
+<div class="grounds-page">
+    <header class="grounds-header">
+        <a routerLink="/scores" class="logo-link" aria-label="cricketworld home">
+            <span class="logo-text">cricketworld</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+            <a routerLink="/scores" class="nav-link">Live Scores</a>
+            <a routerLink="/players" class="nav-link">Players</a>
+            <a routerLink="/grounds" class="nav-link active">Grounds</a>
+        </nav>
+        <div class="header-actions">
+            <a routerLink="/signup" class="signup-link">Sign up</a>
+            <a routerLink="/login" class="login-link">Log in</a>
+        </div>
+    </header>
+
+    <main class="grounds-content">
+        <section class="hero-section">
+            <div>
+                <span class="eyebrow">International cricket venues</span>
+                <h1>Find the ground behind the game.</h1>
+                <p>Explore iconic stadiums across the cricket world, from historic Test arenas to modern match-day giants.</p>
+            </div>
+            <div class="hero-stat">
+                <strong>{{ grounds.length }}</strong>
+                <span>featured venues</span>
+            </div>
+        </section>
+
+        <section class="filter-section" aria-labelledby="country-filter-title">
+            <div>
+                <h2 id="country-filter-title">Browse by country</h2>
+                <p>Select a cricket nation or region to see its featured international grounds.</p>
+            </div>
+            <div class="ground-filters">
+                <label class="search-field">
+                    <span class="sr-only">Search grounds</span>
+                    <span class="search-icon" aria-hidden="true">⌕</span>
+                    <input type="search" [(ngModel)]="searchTerm" placeholder="Search grounds or cities...">
+                </label>
+                <label class="country-select">
+                    <span class="sr-only">Select country</span>
+                    <select [(ngModel)]="selectedCountry">
+                        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+                    </select>
+                </label>
+            </div>
+        </section>
+
+        <section class="grounds-grid" aria-live="polite">
+            <article class="ground-card" *ngFor="let ground of visibleGrounds">
+                <div class="ground-image-wrap">
+                    <img [src]="getGroundImage(ground)" [alt]="ground.name + ' in ' + ground.city" class="ground-image">
+                    <button type="button" class="image-view-button" (click)="openGroundImage(ground)">View image</button>
+                </div>
+                <div class="ground-card-top">
+                    <span class="country-tag">{{ ground.country }}</span>
+                    <span class="ground-icon" aria-hidden="true">🏟</span>
+                </div>
+                <h2>{{ ground.name }}</h2>
+                <p class="location">{{ ground.city }} · {{ ground.homeTeam }}</p>
+                <p class="description">{{ ground.description }}</p>
+                <div class="ground-details">
+                    <div>
+                        <span>Capacity</span>
+                        <strong>{{ ground.capacity }}</strong>
+                    </div>
+                    <div>
+                        <span>Opened</span>
+                        <strong>{{ ground.established }}</strong>
+                    </div>
+                </div>
+                <div class="surface-note">
+                    <span>Pitch character</span>
+                    <strong>{{ ground.surface }}</strong>
+                </div>
+            </article>
+        </section>
+
+        <p class="empty-state" *ngIf="visibleGrounds.length === 0">No grounds found for this selection.</p>
+    </main>
+
+    <div class="image-modal-backdrop" *ngIf="selectedGround" (click)="closeGroundImage()">
+        <section class="image-modal" role="dialog" aria-modal="true" [attr.aria-label]="selectedGround.name + ' image'" (click)="$event.stopPropagation()">
+            <button type="button" class="close-modal-button" aria-label="Close image" (click)="closeGroundImage()">×</button>
+            <img [src]="getGroundImage(selectedGround)" [alt]="selectedGround.name" class="modal-image">
+            <div class="modal-caption">
+                <strong>{{ selectedGround.name }}</strong>
+                <span>{{ selectedGround.city }}, {{ selectedGround.country }}</span>
+            </div>
+        </section>
+    </div>
+</div>

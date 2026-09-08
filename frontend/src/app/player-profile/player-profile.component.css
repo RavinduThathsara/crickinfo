@@ -91,6 +91,42 @@
     opacity: 0.72;
 }
 
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 4px;
+}
+
+.auth-button {
+    border-radius: 5px;
+    padding: 8px 13px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.auth-button-secondary {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.auth-button-primary {
+    background: #f1b51c;
+    border: 1px solid #f1b51c;
+    color: #163d27;
+}
+
+.auth-button:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.auth-button-primary:hover {
+    background: #ffd45d;
+}
+
 @media (max-width: 1100px) {
     .header {
         padding: 12px 24px;

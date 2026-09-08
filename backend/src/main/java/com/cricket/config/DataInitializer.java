@@ -1,18 +1,23 @@
 package com.cricket.config;
 
 import com.cricket.entity.Player;
+import com.cricket.entity.Match;
+import com.cricket.repository.MatchRepository;
 import com.cricket.repository.PlayerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     private final PlayerRepository playerRepository;
+    private final MatchRepository matchRepository;
 
-    public DataInitializer(PlayerRepository playerRepository) {
+    public DataInitializer(PlayerRepository playerRepository, MatchRepository matchRepository) {
         this.playerRepository = playerRepository;
+        this.matchRepository = matchRepository;
     }
 
     @Override
@@ -46,6 +51,30 @@ public class DataInitializer implements CommandLineRunner {
             playerRepository.save(sangakkara);
 
             System.out.println("Sample data initialized with Kumar Sangakkara");
+        }
+
+        if (matchRepository.count() == 0) {
+            Match liveMatch = new Match();
+            liveMatch.setTeam1("IND");
+            liveMatch.setTeam2("AUS");
+            liveMatch.setTeam1Flag("🇮🇳");
+            liveMatch.setTeam2Flag("🇦🇺");
+            liveMatch.setTeam1Score("342/4");
+            liveMatch.setStatus("To bat");
+            liveMatch.setLive(true);
+            liveMatch.setOvers("44.2 Overs");
+            liveMatch.setCurrentRunRate("CRR: 7.72");
+            liveMatch.setBatter1Name("Virat Kohli");
+            liveMatch.setBatter1Score("113*(145)");
+            liveMatch.setBatter2Name("Rishabh Pant");
+            liveMatch.setBatter2Score("45*(41)");
+            liveMatch.setBowlerName("Pat Cummins");
+            liveMatch.setBowlerStats("12.2-1-68-2");
+            liveMatch.setTournament("BORDER-GAVASKAR TROPHY - 2025 TEST");
+            liveMatch.setStartTime(LocalDateTime.now());
+
+            matchRepository.save(liveMatch);
+            System.out.println("Sample live match initialized");
         }
     }
 }

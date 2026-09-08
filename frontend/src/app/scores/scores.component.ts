@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 interface Match {
     id: number;
@@ -44,7 +45,7 @@ interface RecentResult {
 @Component({
     selector: 'app-scores',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterModule],
     templateUrl: './scores.component.html',
     styleUrls: ['./scores.component.css']
 })

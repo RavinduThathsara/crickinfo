@@ -1,0 +1,37 @@
+<main class="login-shell">
+    <section class="login-card" aria-labelledby="login-title">
+        <div class="login-brand">cricketworld</div>
+        <div class="login-header">
+            <span class="eyebrow">Welcome back</span>
+            <h1 id="login-title">Log in to your account</h1>
+            <p>Follow live matches, player stats, and every important cricket moment.</p>
+        </div>
+
+        <form class="login-form">
+            <label class="field">
+                <span>Email or username</span>
+                <input type="text" name="identity" placeholder="Enter your email or username" autocomplete="username">
+            </label>
+
+            <label class="field">
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+            </label>
+
+            <div class="form-options">
+                <label class="remember-option">
+                    <input type="checkbox" name="rememberMe">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+
+            <button type="button" class="login-button">Log in</button>
+        </form>
+
+        <p class="signup-prompt">
+            New to cricketworld?
+            <a routerLink="/signup">Create an account</a>
+        </p>
+    </section>
+</main>

@@ -59,6 +59,13 @@ public class Player {
     
     @Column(name = "test_centuries")
     private Integer testCenturies;
+
+    private Integer catches;
+    private Integer wickets;
+    private Integer stumpings;
+    private Integer fifties;
+    private Double battingAverage;
+    private Double strikeRate;
     
     private String imageUrl;
 }

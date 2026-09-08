@@ -42,10 +42,27 @@ public class DataInitializer implements CommandLineRunner {
             // Other Stats
             sangakkara.setFirstClassRuns(28016);
             sangakkara.setTotalRuns(28016);
+            sangakkara.setCatches(539);
+            sangakkara.setWickets(0);
+            sangakkara.setStumpings(139);
+            sangakkara.setFifties(93);
+            sangakkara.setBattingAverage(41.98);
+            sangakkara.setStrikeRate(78.86);
 
             playerRepository.save(sangakkara);
 
             System.out.println("Sample data initialized with Kumar Sangakkara");
+        }
+
+        Player existingSangakkara = playerRepository.findByNameIgnoreCase("Kumar Sangakkara");
+        if (existingSangakkara != null && existingSangakkara.getCatches() == null) {
+            existingSangakkara.setCatches(539);
+            existingSangakkara.setWickets(0);
+            existingSangakkara.setStumpings(139);
+            existingSangakkara.setFifties(93);
+            existingSangakkara.setBattingAverage(41.98);
+            existingSangakkara.setStrikeRate(78.86);
+            playerRepository.save(existingSangakkara);
         }
     }
 }

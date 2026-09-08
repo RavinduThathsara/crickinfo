@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +22,12 @@ interface Player {
   testCenturies: number;
   firstClassRuns: number;
   totalRuns: number;
+  catches: number;
+  wickets: number;
+  stumpings: number;
+  fifties: number;
+  battingAverage: number;
+  strikeRate: number;
 }
 
 @Component({
@@ -73,10 +79,14 @@ interface Player {
         </div>
 
         <div *ngIf="loading" class="loading">
-          Searching...
+          Loading players...
         </div>
 
-        <div *ngIf="!loading && players.length === 0 && searchName" class="no-results">
+        <div *ngIf="!loading && errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+
+        <div *ngIf="!loading && !errorMessage && players.length === 0 && searchName" class="no-results">
           No players found matching "{{ searchName }}"
         </div>
 
@@ -137,6 +147,42 @@ interface Player {
               <div class="stat-title">Total Career Runs</div>
               <div class="stat-value">{{ player.totalRuns }}</div>
               <div class="stat-label">Complete career</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Catches</div>
+              <div class="stat-value">{{ player.catches }}</div>
+              <div class="stat-label">Career catches</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Wickets</div>
+              <div class="stat-value">{{ player.wickets }}</div>
+              <div class="stat-label">Career wickets</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Stumpings</div>
+              <div class="stat-value">{{ player.stumpings }}</div>
+              <div class="stat-label">Wicket-keeping dismissals</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Fifties</div>
+              <div class="stat-value">{{ player.fifties }}</div>
+              <div class="stat-label">Career 50+ scores</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Batting Average</div>
+              <div class="stat-value">{{ player.battingAverage }}</div>
+              <div class="stat-label">Runs per dismissal</div>
+            </div>
+
+            <div class="stat-card stat-card-accent">
+              <div class="stat-title">Strike Rate</div>
+              <div class="stat-value">{{ player.strikeRate }}</div>
+              <div class="stat-label">Runs per 100 balls</div>
             </div>
           </div>
 
@@ -346,6 +392,10 @@ interface Player {
       color: white;
     }
 
+    .stat-card-accent {
+      background: linear-gradient(135deg, #0f6b43 0%, #158f5a 100%);
+    }
+
     .stat-title {
       font-size: 0.9rem;
       opacity: 0.9;
@@ -370,6 +420,16 @@ interface Player {
       color: #666;
       font-size: 1.2rem;
       padding: 40px;
+    }
+
+    .error-message {
+      margin-bottom: 20px;
+      padding: 18px;
+      border: 1px solid #f0b7b7;
+      border-radius: 8px;
+      color: #8a2424;
+      background: #fff3f3;
+      text-align: center;
     }
 
     .player-actions {
@@ -417,21 +477,45 @@ interface Player {
     }
   `]
 })
-export class PlayersComponent {
+export class PlayersComponent implements OnInit {
   searchName: string = '';
   players: Player[] = [];
   loading: boolean = false;
+  errorMessage: string = '';
   private apiUrl = 'http://localhost:8081/api/players';
 
   constructor(private http: HttpClient) { }
 
+  ngOnInit() {
+    this.loadPlayers();
+  }
+
+  private loadPlayers() {
+    this.loading = true;
+    this.errorMessage = '';
+
+    this.http.get<Player[]>(this.apiUrl)
+      .subscribe({
+        next: (data) => {
+          this.players = data;
+          this.loading = false;
+        },
+        error: (error) => {
+          console.error('Error fetching players:', error);
+          this.errorMessage = 'Players could not be loaded. Please make sure the backend is running.';
+          this.loading = false;
+        }
+      });
+  }
+
   onSearch() {
     if (this.searchName.trim().length < 2) {
-      this.players = [];
+      this.loadPlayers();
       return;
     }
 
     this.loading = true;
+    this.errorMessage = '';
     this.http.get<Player[]>(`${this.apiUrl}/search?name=${this.searchName}`)
       .subscribe({
         next: (data) => {
@@ -440,6 +524,7 @@ export class PlayersComponent {
         },
         error: (error) => {
           console.error('Error fetching players:', error);
+          this.errorMessage = 'Player search failed. Please make sure the backend is running.';
           this.loading = false;
         }
       });

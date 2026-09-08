@@ -19,7 +19,8 @@
             <div>
                 <span class="eyebrow">International cricket venues</span>
                 <h1>Find the ground behind the game.</h1>
-                <p>Explore iconic stadiums across the cricket world, from historic Test arenas to modern match-day giants.</p>
+                <p>Explore iconic stadiums across the cricket world, from historic Test arenas to modern match-day
+                    giants.</p>
             </div>
             <div class="hero-stat">
                 <strong>{{ grounds.length }}</strong>
@@ -51,7 +52,8 @@
             <article class="ground-card" *ngFor="let ground of visibleGrounds">
                 <div class="ground-image-wrap">
                     <img [src]="getGroundImage(ground)" [alt]="ground.name + ' in ' + ground.city" class="ground-image">
-                    <button type="button" class="image-view-button" (click)="openGroundImage(ground)">View image</button>
+                    <button type="button" class="image-view-button" (click)="openGroundImage(ground)">View
+                        image</button>
                 </div>
                 <div class="ground-card-top">
                     <span class="country-tag">{{ ground.country }}</span>
@@ -81,8 +83,10 @@
     </main>
 
     <div class="image-modal-backdrop" *ngIf="selectedGround" (click)="closeGroundImage()">
-        <section class="image-modal" role="dialog" aria-modal="true" [attr.aria-label]="selectedGround.name + ' image'" (click)="$event.stopPropagation()">
-            <button type="button" class="close-modal-button" aria-label="Close image" (click)="closeGroundImage()">×</button>
+        <section class="image-modal" role="dialog" aria-modal="true" [attr.aria-label]="selectedGround.name + ' image'"
+            (click)="$event.stopPropagation()">
+            <button type="button" class="close-modal-button" aria-label="Close image"
+                (click)="closeGroundImage()">×</button>
             <img [src]="getGroundImage(selectedGround)" [alt]="selectedGround.name" class="modal-image">
             <div class="modal-caption">
                 <strong>{{ selectedGround.name }}</strong>

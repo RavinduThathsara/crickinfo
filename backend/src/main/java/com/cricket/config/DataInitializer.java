@@ -1,18 +1,23 @@
 package com.cricket.config;
 
 import com.cricket.entity.Player;
+import com.cricket.entity.Match;
+import com.cricket.repository.MatchRepository;
 import com.cricket.repository.PlayerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     private final PlayerRepository playerRepository;
+    private final MatchRepository matchRepository;
 
-    public DataInitializer(PlayerRepository playerRepository) {
+    public DataInitializer(PlayerRepository playerRepository, MatchRepository matchRepository) {
         this.playerRepository = playerRepository;
+        this.matchRepository = matchRepository;
     }
 
     @Override

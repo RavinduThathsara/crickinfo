@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Cricket ground</title>
+  <desc id="desc">Illustrated international cricket ground with floodlights and a green pitch.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b3520"/>
+      <stop offset="1" stop-color="#2d8a50"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#68b85d"/>
+      <stop offset="1" stop-color="#176b3c"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="420" fill="url(#sky)"/>
+  <circle cx="720" cy="92" r="58" fill="#f5c63e" opacity=".75"/>
+  <path d="M0 225 Q220 160 450 225 T900 225 V420 H0Z" fill="#123e27"/>
+  <path d="M0 270 Q230 205 450 270 T900 270 V420 H0Z" fill="url(#field)"/>
+  <ellipse cx="450" cy="330" rx="126" ry="49" fill="#d8bf88" opacity=".95"/>
+  <rect x="392" y="282" width="116" height="96" rx="4" fill="#c9a970"/>
+  <path d="M392 330 H508 M450 282 V378" stroke="#f8e8bc" stroke-width="4" opacity=".8"/>
+  <g fill="#dbe8dd" opacity=".9">
+    <rect x="110" y="118" width="12" height="110" rx="6"/>
+    <rect x="98" y="108" width="36" height="12" rx="6"/>
+    <rect x="770" y="118" width="12" height="110" rx="6"/>
+    <rect x="758" y="108" width="36" height="12" rx="6"/>
+  </g>
+  <g fill="#fff6bf" opacity=".8">
+    <circle cx="92" cy="101" r="7"/><circle cx="116" cy="101" r="7"/><circle cx="140" cy="101" r="7"/>
+    <circle cx="752" cy="101" r="7"/><circle cx="776" cy="101" r="7"/><circle cx="800" cy="101" r="7"/>
+  </g>
+  <path d="M0 245 Q225 185 450 245 T900 245" fill="none" stroke="#b9d8ae" stroke-width="4" opacity=".55"/>
+  <g fill="#f2f6df" opacity=".7">
+    <circle cx="220" cy="295" r="3"/><circle cx="255" cy="320" r="3"/><circle cx="680" cy="300" r="3"/><circle cx="725" cy="335" r="3"/>
+  </g>
+</svg>

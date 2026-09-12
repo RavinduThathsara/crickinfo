@@ -47,34 +47,27 @@ public class DataInitializer implements CommandLineRunner {
             // Other Stats
             sangakkara.setFirstClassRuns(28016);
             sangakkara.setTotalRuns(28016);
+            sangakkara.setCatches(539);
+            sangakkara.setWickets(0);
+            sangakkara.setStumpings(139);
+            sangakkara.setFifties(93);
+            sangakkara.setBattingAverage(41.98);
+            sangakkara.setStrikeRate(78.86);
 
             playerRepository.save(sangakkara);
 
             System.out.println("Sample data initialized with Kumar Sangakkara");
         }
 
-        if (matchRepository.count() == 0) {
-            Match liveMatch = new Match();
-            liveMatch.setTeam1("IND");
-            liveMatch.setTeam2("AUS");
-            liveMatch.setTeam1Flag("🇮🇳");
-            liveMatch.setTeam2Flag("🇦🇺");
-            liveMatch.setTeam1Score("342/4");
-            liveMatch.setStatus("To bat");
-            liveMatch.setLive(true);
-            liveMatch.setOvers("44.2 Overs");
-            liveMatch.setCurrentRunRate("CRR: 7.72");
-            liveMatch.setBatter1Name("Virat Kohli");
-            liveMatch.setBatter1Score("113*(145)");
-            liveMatch.setBatter2Name("Rishabh Pant");
-            liveMatch.setBatter2Score("45*(41)");
-            liveMatch.setBowlerName("Pat Cummins");
-            liveMatch.setBowlerStats("12.2-1-68-2");
-            liveMatch.setTournament("BORDER-GAVASKAR TROPHY - 2025 TEST");
-            liveMatch.setStartTime(LocalDateTime.now());
-
-            matchRepository.save(liveMatch);
-            System.out.println("Sample live match initialized");
+        Player existingSangakkara = playerRepository.findByNameIgnoreCase("Kumar Sangakkara");
+        if (existingSangakkara != null && existingSangakkara.getCatches() == null) {
+            existingSangakkara.setCatches(539);
+            existingSangakkara.setWickets(0);
+            existingSangakkara.setStumpings(139);
+            existingSangakkara.setFifties(93);
+            existingSangakkara.setBattingAverage(41.98);
+            existingSangakkara.setStrikeRate(78.86);
+            playerRepository.save(existingSangakkara);
         }
     }
 }

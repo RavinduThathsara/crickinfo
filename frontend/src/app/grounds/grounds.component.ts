@@ -228,7 +228,9 @@ export class GroundsComponent {
     }
 
     getGroundImage(ground: CricketGround): string {
-        return 'assets/ground-venue.svg';
+        return ground.name === 'R. Premadasa Stadium'
+            ? 'assets/SlGround1.png'
+            : 'assets/ground-venue.svg';
     }
 
     openGroundImage(ground: CricketGround): void {
